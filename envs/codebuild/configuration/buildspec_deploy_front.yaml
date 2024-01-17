@@ -13,7 +13,7 @@ phases:
       - echo $SWITCH_TARGET
       #########################
       - echo "Set for codebuild"
-      - cd ./envs/dev/app/
+      - cd ./envs/app/
       - make for-codebuild
       #########################
       - echo "Run Deploy Frontend"

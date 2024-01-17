@@ -12,7 +12,7 @@ phases:
       - echo $DEPLOY_PURPOSE
       #########################
       - echo "Set for codebuild"
-      - cd ./envs/dev/app/
+      - cd ./envs/app/
       - make for-codebuild
       #########################
       - echo "destroy blue"
