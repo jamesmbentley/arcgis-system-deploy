@@ -24,22 +24,22 @@ variable "deploy_purpose" {
 variable "payload_servercert" {
   type        = string
   description = "The payload for server certificate password to encrypt with kms"
-  default     = ""
+  default     = "temp"
 }
 variable "payload_portaladmin" {
   type        = string
   description = "The payload for portaladmin password to encrypt with kms"
-  default     = ""
+  default     = "temp"
 }
 variable "payload_serveradmin" {
   type        = string
   description = "The payload for serveradmin password to encrypt with kms"
-  default     = ""
+  default     = "temp"
 }
 variable "payload_serviceaccount" {
   type        = string
   description = "The payload for serviceaccount password to encrypt with kms"
-  default     = ""
+  default     = "temp"
 }
 data "aws_ami" "arcgisserver" {
   most_recent = true
