@@ -15,7 +15,7 @@ env:
 
 defaults:
   run:
-    working-directory: ./envs/dev/app/ansible/
+    working-directory: ./envs/app/ansible/
 
 jobs:
   deploy-infra:
@@ -58,4 +58,4 @@ jobs:
         uses: aws-actions/aws-codebuild-run-build@v1.0.4
         with:
           project-name: ${{ env.CODEBUILD_PROJECT_NAME }}
-          buildspec-override: ./envs/dev/codebuild/configuration/buildspec_deploy_infra.yaml
+          buildspec-override: ./envs/codebuild/configuration/buildspec_deploy_infra.yaml

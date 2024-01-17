@@ -20,7 +20,7 @@ env:
   # set with your preferred AWS region, e.g. us-west-1
   AWS_REGION: us-east-1
   # set with GitHub Actions role name
-  AWS_ROLE_ARN: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-action-to-ec2
+  AWS_ROLE_ARN: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
   ROLLE_SESSION_NAME: GithubAction-Deploy-Front
   CODEBUILD_PROJECT_NAME: ${{ secrets.AWS_CODEBUILD_PROJECT }}
   DEPLOY_SUBDOMAIN: ${{ github.event.inputs.subdomain }}
@@ -28,7 +28,7 @@ env:
 
 defaults:
   run:
-    working-directory: ./envs/dev/app/ansible/
+    working-directory: ./envs/app/ansible/
 
 jobs:
   deploy-front:
@@ -71,7 +71,7 @@ jobs:
         uses: aws-actions/aws-codebuild-run-build@v1.0.4
         with:
           project-name: ${{ env.CODEBUILD_PROJECT_NAME }}
-          buildspec-override: ./envs/dev/codebuild/configuration/buildspec_deploy_front.yaml
+          buildspec-override: ./envs/codebuild/configuration/buildspec_deploy_front.yaml
           env-vars-for-codebuild: |
             DEPLOY_SUBDOMAIN,
             SWITCH_TARGET
