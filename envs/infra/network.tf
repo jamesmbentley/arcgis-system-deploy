@@ -75,7 +75,7 @@ resource "aws_internet_gateway" "this" {
 ## NAT gateway for each public subnets
 resource "aws_eip" "this" {
   count = 2
-  vpc   = true
+  domain = "vpc"
 }
 
 resource "aws_nat_gateway" "this" {
