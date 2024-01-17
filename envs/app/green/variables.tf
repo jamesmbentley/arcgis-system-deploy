@@ -1,1 +1,0 @@
-../blue/variables.tf

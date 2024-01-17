@@ -46,15 +46,8 @@ jobs:
     with:
       subdomain: ${{ env.DEPLOY_SUBDOMAIN }}
       deploypurpose: ${{ env.DEPLOY_PURPOSE }}
-  deploy-green:
-    uses: ./.github/workflows/dev-arcgis-system-deploy-app-green.yaml
-    # if manual-run, please comment out the following
-    # if: contains(toJSON(github.event.commits.*.message), '@deploy-aws')
-    with:
-      subdomain: ${{ env.DEPLOY_SUBDOMAIN }}
-      deploypurpose: ${{ env.DEPLOY_PURPOSE }}
   deploy-front:
-    needs: [deploy-blue, deploy-green]
+    needs: [deploy-blue]
     uses: ./.github/workflows/dev-arcgis-system-deploy-app-front.yaml
     with:
       subdomain: ${{ env.DEPLOY_SUBDOMAIN }}

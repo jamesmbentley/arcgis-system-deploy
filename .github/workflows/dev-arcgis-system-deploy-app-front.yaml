@@ -18,7 +18,7 @@ on:
 
 env:
   # set with your preferred AWS region, e.g. us-west-1
-  AWS_REGION: ap-southeast-2
+  AWS_REGION: us-east-1
   # set with GitHub Actions role name
   AWS_ROLE_ARN: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-action-to-ec2
   ROLLE_SESSION_NAME: GithubAction-Deploy-Front
@@ -32,8 +32,8 @@ defaults:
 
 jobs:
   deploy-front:
-    if: ${{ github.ref == 'refs/heads/main' }}
-    runs-on: ubuntu-20.04
+    if: ${{ github.ref == 'refs/heads/working' }}
+    runs-on: ubuntu-latest
     # These permissions are needed to interact with GitHub's OIDC Token endpoint.
     permissions:
       id-token: write
