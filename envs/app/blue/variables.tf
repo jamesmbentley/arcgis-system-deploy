@@ -24,22 +24,22 @@ variable "deploy_purpose" {
 variable "payload_servercert" {
   type        = string
   description = "The payload for server certificate password to encrypt with kms"
-  default     = "AQICAHhm46wZp1oQukDm7WpOVWNDTUSHHlJIoRfjXp8jqB1uUgGnwecm4NrT6Mk3CvHNaTLTAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMhDwHudWpdSoaYRYTAgEQgCg9dpaTvf1IPvtwYhGaqSsZcXU5uwL6ARTuT+8V+my1R1LpYOIscGiZ"
+  default     = "AQICAHg0GGAVbZC5u2MVYplX6WQb8/wx3sSoU1mdjPaTGMgX5wE6dY+jKTzh69AmoBt/rcaNAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM6KzxPKD6kCtV83xJAgEQgChge1OwGr24FB8PwwzTApZk6uCBJwDMBq219M1f+AYF3tCpb8zEbE13"
 }
 variable "payload_portaladmin" {
   type        = string
   description = "The payload for portaladmin password to encrypt with kms"
-  default     = "AQICAHhm46wZp1oQukDm7WpOVWNDTUSHHlJIoRfjXp8jqB1uUgGnwecm4NrT6Mk3CvHNaTLTAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMhDwHudWpdSoaYRYTAgEQgCg9dpaTvf1IPvtwYhGaqSsZcXU5uwL6ARTuT+8V+my1R1LpYOIscGiZ"
+  default     = "AQICAHg0GGAVbZC5u2MVYplX6WQb8/wx3sSoU1mdjPaTGMgX5wE6dY+jKTzh69AmoBt/rcaNAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM6KzxPKD6kCtV83xJAgEQgChge1OwGr24FB8PwwzTApZk6uCBJwDMBq219M1f+AYF3tCpb8zEbE13"
 }
 variable "payload_serveradmin" {
   type        = string
   description = "The payload for serveradmin password to encrypt with kms"
-  default     = "AQICAHhm46wZp1oQukDm7WpOVWNDTUSHHlJIoRfjXp8jqB1uUgGnwecm4NrT6Mk3CvHNaTLTAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMhDwHudWpdSoaYRYTAgEQgCg9dpaTvf1IPvtwYhGaqSsZcXU5uwL6ARTuT+8V+my1R1LpYOIscGiZ"
+  default     = "AQICAHg0GGAVbZC5u2MVYplX6WQb8/wx3sSoU1mdjPaTGMgX5wE6dY+jKTzh69AmoBt/rcaNAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM6KzxPKD6kCtV83xJAgEQgChge1OwGr24FB8PwwzTApZk6uCBJwDMBq219M1f+AYF3tCpb8zEbE13"
 }
 variable "payload_serviceaccount" {
   type        = string
   description = "The payload for serviceaccount password to encrypt with kms"
-  default     = "AQICAHhm46wZp1oQukDm7WpOVWNDTUSHHlJIoRfjXp8jqB1uUgGnwecm4NrT6Mk3CvHNaTLTAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMhDwHudWpdSoaYRYTAgEQgCg9dpaTvf1IPvtwYhGaqSsZcXU5uwL6ARTuT+8V+my1R1LpYOIscGiZ"
+  default     = "AQICAHg0GGAVbZC5u2MVYplX6WQb8/wx3sSoU1mdjPaTGMgX5wE6dY+jKTzh69AmoBt/rcaNAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM6KzxPKD6kCtV83xJAgEQgChge1OwGr24FB8PwwzTApZk6uCBJwDMBq219M1f+AYF3tCpb8zEbE13"
 }
 data "aws_ami" "arcgisserver" {
   most_recent = true
