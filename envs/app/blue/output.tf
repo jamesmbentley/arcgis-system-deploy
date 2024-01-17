@@ -75,9 +75,10 @@ resource "local_file" "ansible_inventory" {
       arcgisdatastorenode_private_dns = aws_instance.arcgisdatastore.private_dns
       arcgisservernode_private_dns    = aws_instance.arcgisserver.private_dns
       arcgisportalnode_private_dns    = aws_instance.arcgisportal.private_dns
-      arcgisdatastorenode_password    = "${rsadecrypt(aws_instance.arcgisdatastore.password_data, nonsensitive(tls_private_key.keygen.private_key_pem))}"
-      arcgisservernode_password       = "${rsadecrypt(aws_instance.arcgisserver.password_data, nonsensitive(tls_private_key.keygen.private_key_pem))}"
-      arccgisportalnode_password      = "${rsadecrypt(aws_instance.arcgisportal.password_data, nonsensitive(tls_private_key.keygen.private_key_pem))}"
+      arcgisdatastorenode_password    = "${rsadecrypt(aws_instance.arcgisdatastore.password_data, nonsensitive(var.key_name))}"
+      arcgisservernode_password       = "${rsadecrypt(aws_instance.arcgisserver.password_data, nonsensitive(var.key_name))}"
+      arccgisportalnode_password      = "${rsadecrypt(aws_instance.arcgisportal.password_data, nonsensitive(var.key_name))}"
+      # arccgisportalnode_password      = "${rsadecrypt(aws_instance.arcgisportal.password_data, nonsensitive(tls_private_key.keygen.private_key_pem))}"
       deploy_purpose                  = var.deploy_purpose
     }
   )
@@ -136,7 +137,7 @@ data "aws_s3_bucket" "system_config" {
   bucket = data.terraform_remote_state.infra.outputs.aws_s3_bucket_systemconfig
 }
 
-resource "aws_s3_bucket_object" "ansible_inventory" {
+resource "aws_s3_object" "ansible_inventory" {
   depends_on = [local_file.ansible_variables]
   bucket     = data.aws_s3_bucket.system_config.id
   key        = "env:/${terraform.workspace}/${data.terraform_remote_state.infra.outputs.blue_domain_name}/inventory"
@@ -144,7 +145,7 @@ resource "aws_s3_bucket_object" "ansible_inventory" {
   # etag = filemd5("../ansible/inventory")
 }
 
-resource "aws_s3_bucket_object" "ansible_variables" {
+resource "aws_s3_object" "ansible_variables" {
   depends_on = [local_file.ansible_variables]
   bucket     = data.aws_s3_bucket.system_config.id
   key        = "env:/${terraform.workspace}/${data.terraform_remote_state.infra.outputs.blue_domain_name}/vars_global.yaml"
@@ -172,20 +173,19 @@ resource "aws_ssm_parameter" "arcgisdatastore" {
   depends_on = [aws_instance.arcgisdatastore]
   name       = "/${var.name}/${terraform.workspace}-${data.terraform_remote_state.infra.outputs.blue_domain_name}-datastore/ec2-win-password"
   type       = "SecureString"
-  value      = rsadecrypt(aws_instance.arcgisdatastore.password_data, nonsensitive(tls_private_key.keygen.private_key_pem))
-  overwrite  = true
+  value      = rsadecrypt(aws_instance.arcgisdatastore.password_data, nonsensitive(var.key_name))
 }
+
 resource "aws_ssm_parameter" "arcgisserver" {
   depends_on = [aws_instance.arcgisserver]
   name       = "/${var.name}/${terraform.workspace}-${data.terraform_remote_state.infra.outputs.blue_domain_name}-server/ec2-win-password"
   type       = "SecureString"
-  value      = rsadecrypt(aws_instance.arcgisserver.password_data, nonsensitive(tls_private_key.keygen.private_key_pem))
-  overwrite  = true
+  value      = rsadecrypt(aws_instance.arcgisserver.password_data, nonsensitive(var.key_name))
 }
+
 resource "aws_ssm_parameter" "arcgisportal" {
   depends_on = [aws_instance.arcgisportal]
   name       = "/${var.name}/${terraform.workspace}-${data.terraform_remote_state.infra.outputs.blue_domain_name}-portal/ec2-win-password"
   type       = "SecureString"
-  value      = rsadecrypt(aws_instance.arcgisportal.password_data, nonsensitive(tls_private_key.keygen.private_key_pem))
-  overwrite  = true
+  value      = rsadecrypt(aws_instance.arcgisportal.password_data, nonsensitive(var.key_name))
 }
