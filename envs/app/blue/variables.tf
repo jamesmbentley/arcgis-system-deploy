@@ -24,22 +24,22 @@ variable "deploy_purpose" {
 variable "payload_servercert" {
   type        = string
   description = "The payload for server certificate password to encrypt with kms"
-  default     = "temp"
+  default     = "AQICAHhm46wZp1oQukDm7WpOVWNDTUSHHlJIoRfjXp8jqB1uUgGnwecm4NrT6Mk3CvHNaTLTAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMhDwHudWpdSoaYRYTAgEQgCg9dpaTvf1IPvtwYhGaqSsZcXU5uwL6ARTuT+8V+my1R1LpYOIscGiZ"
 }
 variable "payload_portaladmin" {
   type        = string
   description = "The payload for portaladmin password to encrypt with kms"
-  default     = "temp"
+  default     = "AQICAHhm46wZp1oQukDm7WpOVWNDTUSHHlJIoRfjXp8jqB1uUgGnwecm4NrT6Mk3CvHNaTLTAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMhDwHudWpdSoaYRYTAgEQgCg9dpaTvf1IPvtwYhGaqSsZcXU5uwL6ARTuT+8V+my1R1LpYOIscGiZ"
 }
 variable "payload_serveradmin" {
   type        = string
   description = "The payload for serveradmin password to encrypt with kms"
-  default     = "temp"
+  default     = "AQICAHhm46wZp1oQukDm7WpOVWNDTUSHHlJIoRfjXp8jqB1uUgGnwecm4NrT6Mk3CvHNaTLTAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMhDwHudWpdSoaYRYTAgEQgCg9dpaTvf1IPvtwYhGaqSsZcXU5uwL6ARTuT+8V+my1R1LpYOIscGiZ"
 }
 variable "payload_serviceaccount" {
   type        = string
   description = "The payload for serviceaccount password to encrypt with kms"
-  default     = "temp"
+  default     = "AQICAHhm46wZp1oQukDm7WpOVWNDTUSHHlJIoRfjXp8jqB1uUgGnwecm4NrT6Mk3CvHNaTLTAAAAazBpBgkqhkiG9w0BBwagXDBaAgEAMFUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMhDwHudWpdSoaYRYTAgEQgCg9dpaTvf1IPvtwYhGaqSsZcXU5uwL6ARTuT+8V+my1R1LpYOIscGiZ"
 }
 data "aws_ami" "arcgisserver" {
   most_recent = true
