@@ -2,8 +2,8 @@ data "terraform_remote_state" "infra" {
   backend = "s3"
 
   config = {
-    bucket = "REMOTE STATE BUCKET NAME"
+    bucket = "bentley-tf-remote-state"
     key    = "dev/infra_v1.0.0.tfstate"
-    region = "BUCKET REGION"
+    region = "us-east-1"
   }
 }
