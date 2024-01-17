@@ -3,7 +3,8 @@ resource "aws_instance" "arcgisserver" {
   instance_type               = var.instance_type
   vpc_security_group_ids      = [data.terraform_remote_state.infra.outputs.aws_security_group_private_web_id]
   subnet_id                   = data.terraform_remote_state.infra.outputs.aws_subnet_private_web_maplist[0].id
-  key_name                    = aws_key_pair.key_pair.id
+  # key_name                    = aws_key_pair.key_pair.id
+  key_name                    = var.key_name.id
   associate_public_ip_address = false
   get_password_data           = true
   iam_instance_profile        = data.terraform_remote_state.infra.outputs.aws_ami_instance_profile_ec2_name
@@ -18,7 +19,8 @@ resource "aws_instance" "arcgisportal" {
   instance_type               = var.instance_type
   vpc_security_group_ids      = [data.terraform_remote_state.infra.outputs.aws_security_group_private_web_id]
   subnet_id                   = data.terraform_remote_state.infra.outputs.aws_subnet_private_web_maplist[0].id
-  key_name                    = aws_key_pair.key_pair.id
+  # key_name                    = aws_key_pair.key_pair.id
+  key_name                    = var.key_name.id
   associate_public_ip_address = false
   get_password_data           = true
   iam_instance_profile        = data.terraform_remote_state.infra.outputs.aws_ami_instance_profile_ec2_name
@@ -34,7 +36,8 @@ resource "aws_instance" "arcgisdatastore" {
   instance_type               = var.instance_type
   vpc_security_group_ids      = [data.terraform_remote_state.infra.outputs.aws_security_group_private_data_id]
   subnet_id                   = data.terraform_remote_state.infra.outputs.aws_subnet_private_data_maplist[0].id
-  key_name                    = aws_key_pair.key_pair.id
+  # key_name                    = aws_key_pair.key_pair.id
+  key_name                    = var.key_name.id
   associate_public_ip_address = false
   get_password_data           = true
   iam_instance_profile        = data.terraform_remote_state.infra.outputs.aws_ami_instance_profile_ec2_name
