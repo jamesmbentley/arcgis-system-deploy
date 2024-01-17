@@ -14,7 +14,7 @@ phases:
       #########################
       - echo "Run Deploy infra"
       - cd ./infra/
-      - aws ssm get-parameter --name "/egihssystem/terraform/infravars" | jq -r .Parameter.Value > ./terraform.tfvars
+      # - aws ssm get-parameter --name "/egihssystem/terraform/infravars" | jq -r .Parameter.Value > ./terraform.tfvars
       - tfenv install
       - tfenv use
       - terraform --version

@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "AWS REGION"
+  region = "us-east-1"
 
   default_tags {
     tags = {
