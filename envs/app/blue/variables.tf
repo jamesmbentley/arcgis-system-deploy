@@ -1,22 +1,25 @@
 variable "name" {
   type = string
+  default = "arcserver-james"
 }
 variable "instance_type" {
   type = string
+  default = "t3.xlarge"
 }
 variable "key_name" {
   type        = string
   description = "tf-key-pair"
-  default     = "tf-key"
+  default     = "github-packer"
 }
 variable "color" {
   type        = string
   description = "color of deployment"
+  default = "blue"
 }
 variable "deploy_purpose" {
   type        = string
   description = "purpose of deployment, prod or dev. specified with command only"
-  default     = ""
+  default     = "dev"
 }
 variable "payload_servercert" {
   type        = string
@@ -40,7 +43,7 @@ variable "payload_serviceaccount" {
 }
 data "aws_ami" "arcgisserver" {
   most_recent = true
-  name_regex  = "^${var.deploy_purpose}-arcgisserver"
+  name_regex  = "^arcgisserver"
   owners      = ["self"]
   filter {
     name   = "tag:AMI_ROLE"
@@ -49,7 +52,7 @@ data "aws_ami" "arcgisserver" {
 }
 data "aws_ami" "arcgisportal" {
   most_recent = true
-  name_regex  = "^${var.deploy_purpose}-arcgisportal"
+  name_regex  = "^arcgisportal"
   owners      = ["self"]
   filter {
     name   = "tag:AMI_ROLE"
@@ -58,7 +61,7 @@ data "aws_ami" "arcgisportal" {
 }
 data "aws_ami" "arcgisdatastore" {
   most_recent = true
-  name_regex  = "^${var.deploy_purpose}-arcgisdatastore"
+  name_regex  = "^arcgisdatastore"
   owners      = ["self"]
   filter {
     name   = "tag:AMI_ROLE"

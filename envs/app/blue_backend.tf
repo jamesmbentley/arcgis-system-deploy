@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "REMOTE STATE BUCKET NAME"
+    bucket = "bentley-tf-remote-state"
     key    = "dev/app_blue_v1.0.0.tfstate"
-    region = "BUCKET REGION"
+    region = "us-east-1"
   }
 }
