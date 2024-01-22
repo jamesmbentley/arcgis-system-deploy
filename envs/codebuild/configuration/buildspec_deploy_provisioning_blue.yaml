@@ -42,9 +42,11 @@ phases:
       - aws ec2 authorize-security-group-ingress --group-id "$(cat ./private_data_group_id)" --protocol tcp --port 5985 --cidr 0.0.0.0/0
       # # - aws ec2 authorize-security-group-ingress --group-id "$(cat ./private_web_group_id)" --protocol tcp --port 5985 --cidr `curl inet-ip.info`/32
       # # - aws ec2 authorize-security-group-ingress --group-id "$(cat ./private_data_group_id)" --protocol tcp --port 5985 --cidr `curl inet-ip.info`/32
-      - ansible arcgisdatastorenode -i ./inventory -m win_ping
+      - ansible arcgisportalnode -i ./inventory -m win_ping
       - ansible-playbook -i ./inventory ./arcgisportal.yaml
+      - ansible arcgisservernode -i ./inventory -m win_ping
       - ansible-playbook -i ./inventory ./arcgisserver.yaml
+      - ansible arcgisdatastorenode -i ./inventory -m win_ping
       - ansible-playbook -i ./inventory ./arcgisdatastore.yaml
       - ansible-playbook -i ./inventory ./federation.yaml
       - echo "congratulations!!"
@@ -54,5 +56,5 @@ phases:
       - echo "close security group"
       - echo "$PWD"
       - cd ../ansible/
-      - aws ec2 revoke-security-group-ingress --group-id "$(cat ./private_web_group_id)" --protocol tcp --port 5985 --cidr 0.0.0.0/0
-      - aws ec2 revoke-security-group-ingress --group-id "$(cat ./private_data_group_id)" --protocol tcp --port 5985 --cidr 0.0.0.0/0
+      #- aws ec2 revoke-security-group-ingress --group-id "$(cat ./private_web_group_id)" --protocol tcp --port 5985 --cidr 0.0.0.0/0
+      #- aws ec2 revoke-security-group-ingress --group-id "$(cat ./private_data_group_id)" --protocol tcp --port 5985 --cidr 0.0.0.0/0
