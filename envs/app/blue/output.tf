@@ -75,9 +75,10 @@ resource "local_file" "ansible_inventory" {
       arcgisdatastorenode_private_dns = aws_instance.arcgisdatastore.private_dns
       arcgisservernode_private_dns    = aws_instance.arcgisserver.private_dns
       arcgisportalnode_private_dns    = aws_instance.arcgisportal.private_dns
-      arcgisdatastorenode_password    = "${rsadecrypt(aws_instance.arcgisdatastore.password_data, nonsensitive(var.key_name))}"
-      arcgisservernode_password       = "${rsadecrypt(aws_instance.arcgisserver.password_data, nonsensitive(var.key_name))}"
-      arccgisportalnode_password      = "${rsadecrypt(aws_instance.arcgisportal.password_data, nonsensitive(var.key_name))}"
+      # arcgisdatastorenode_password    = "${rsadecrypt(aws_instance.arcgisdatastore.password_data, nonsensitive(var.key_name))}"
+      arcgisdatastorenode_password    = "${rsadecrypt(aws_instance.arcgisdatastore.password_data, file("./privatekey"))}"
+      arcgisservernode_password       = "${rsadecrypt(aws_instance.arcgisserver.password_data, file("./privatekey"))}"
+      arccgisportalnode_password      = "${rsadecrypt(aws_instance.arcgisportal.password_data, file("./privatekey"))}"
       # arccgisportalnode_password      = "${rsadecrypt(aws_instance.arcgisportal.password_data, nonsensitive(tls_private_key.keygen.private_key_pem))}"
       deploy_purpose                  = var.deploy_purpose
     }
@@ -173,19 +174,19 @@ resource "aws_ssm_parameter" "arcgisdatastore" {
   depends_on = [aws_instance.arcgisdatastore]
   name       = "/${var.name}/${terraform.workspace}-${data.terraform_remote_state.infra.outputs.blue_domain_name}-datastore/ec2-win-password"
   type       = "SecureString"
-  value      = rsadecrypt(aws_instance.arcgisdatastore.password_data, nonsensitive(var.key_name))
+  value      = rsadecrypt(aws_instance.arcgisdatastore.password_data, file("./privatekey"))
 }
 
 resource "aws_ssm_parameter" "arcgisserver" {
   depends_on = [aws_instance.arcgisserver]
   name       = "/${var.name}/${terraform.workspace}-${data.terraform_remote_state.infra.outputs.blue_domain_name}-server/ec2-win-password"
   type       = "SecureString"
-  value      = rsadecrypt(aws_instance.arcgisserver.password_data, nonsensitive(var.key_name))
+  value      = rsadecrypt(aws_instance.arcgisserver.password_data, file("./privatekey"))
 }
 
 resource "aws_ssm_parameter" "arcgisportal" {
   depends_on = [aws_instance.arcgisportal]
   name       = "/${var.name}/${terraform.workspace}-${data.terraform_remote_state.infra.outputs.blue_domain_name}-portal/ec2-win-password"
   type       = "SecureString"
-  value      = rsadecrypt(aws_instance.arcgisportal.password_data, nonsensitive(var.key_name))
+  value      = rsadecrypt(aws_instance.arcgisportal.password_data, file("./privatekey"))
 }
