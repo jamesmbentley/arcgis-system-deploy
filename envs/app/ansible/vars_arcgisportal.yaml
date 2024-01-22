@@ -19,8 +19,8 @@ certificate_ciphersuites: TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_W
 win_service_name: "Portal for ArcGIS"
 win_backup_dir: C:\arcgisdeployment\backup
 # the following variable is set with system information.
-win_portal_dir: C:\egihs\arcgisportal
-win_install_dir: C:\ArcGIS # the default value. The ansible task can get the value from registery and overwrite this varibable.
+win_portal_dir: C:\esri\content
+win_install_dir: C:\esri\arcgis # the default value. The ansible task can get the value from registery and overwrite this varibable.
 win_createportal_shell_location: "{{ win_install_dir }}\\tools\\createportal" # the default value. The ansible task can get the win_install_dir value from registery and overwrite this varibable.
 win_createportal_shell: "createportal.bat -f {{ win_remote_temp_dest_dir }}\\createportal.properties" # See the terraform template file in the data directory. 
 win_serviceaccount_shell_location: "{{ win_install_dir }}\\tools"

@@ -14,10 +14,10 @@ system_properties_update_endpoint: "https://{{ server_internal_fqdn }}:6443/arcg
 
 # for Windows
 win_service_name: "ArcGIS Server"
-win_server_dir: C:\egihs\arcgisserver
-win_config_store_dir: C:\egihs\arcgisserver
+win_server_dir: C:\esri\services
+win_config_store_dir: C:\esri\config
 # the following variable is set with system information.
-win_install_dir: C:\ArcGIS # the default value. The ansible task can get the value from registery and overwrite this varibable.
+win_install_dir: C:\esri\arcgis # the default value. The ansible task can get the value from registery and overwrite this varibable.
 win_softwareauthorization_exe: C:\PROGRA~1\COMMON~1\ArcGIS\bin\SoftwareAuthorization.exe
 win_authorize_software_shell: "{{ win_softwareauthorization_exe }} -s Server -v 10.9 -lif {{ win_remote_temp_dest_dir }}\\{{ server_authorizationfile }}"
 # {{ C:\Program Files\Common Files\ArcGIS\bin\SoftwareAuthorization.exe }}\"\" /S Server /V 10.9 /LIF "{{ win_remote_temp_dest_dir }}\{{ server_authorizationfile }}
