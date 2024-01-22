@@ -3,13 +3,13 @@ arcgisserverinstance ansible_host=${ arcgisservernode_private_dns } ansible_pass
 arcgisportalinstance ansible_host=${ arcgisportalnode_private_dns } ansible_password="${ arccgisportalnode_password }"
 
 
-[${ deploy_purpose }arcgisdatastorenode]
+[arcgisdatastorenode]
 arcgisdatastoreinstance
 
-[${ deploy_purpose }arcgisservernode]
+[arcgisservernode]
 arcgisserverinstance
 
-[${ deploy_purpose }arcgisportalnode]
+[arcgisportalnode]
 arcgisportalinstance
 
 [all:vars]
