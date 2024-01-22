@@ -21,7 +21,6 @@ phases:
       - echo "Run Deploy Blue"
       - cd ./blue/
       - aws ssm get-parameter --name "/key/github-action" --with-decryption | jq -r .Parameter.Value > ./privatekey
-      - cat ./privatekey
       - aws ssm get-parameter --name "/egihssystem/terraform/bluevars" | jq -r .Parameter.Value > ./terraform.tfvars
       - tfenv install
       - tfenv use
@@ -34,9 +33,10 @@ phases:
       - echo "Run Provisioning base deployment"
       - cd ../ansible/
       - cat ./inventory
-      - aws ssm get-parameter --name "/arcgissystem/manage/private-web-sg-id" | jq -r .Parameter.Value > ./private_web_group_id
+      # - aws ssm get-parameter --name "/arcgissystem/manage/private-web-sg-id" | jq -r .Parameter.Value > ./private_web_group_id
+      - aws ssm get-parameter --name "/james/manage/private-web-sg-id" | jq -r .Parameter.Value > ./private_web_group_id
       - cat ./private_web_group_id
-      - aws ssm get-parameter --name "/arcgissystem/manage/private-data-sg-id" | jq -r .Parameter.Value > ./private_data_group_id
+      - aws ssm get-parameter --name "/james/manage/private-data-sg-id" | jq -r .Parameter.Value > ./private_data_group_id
       - cat ./private_data_group_id
       - aws ec2 authorize-security-group-ingress --group-id "$(cat ./private_web_group_id)" --protocol tcp --port 5985 --cidr 0.0.0.0/0
       - aws ec2 authorize-security-group-ingress --group-id "$(cat ./private_data_group_id)" --protocol tcp --port 5985 --cidr 0.0.0.0/0

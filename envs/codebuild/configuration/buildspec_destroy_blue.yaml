@@ -18,7 +18,6 @@ phases:
       - echo "destroy blue"
       - cd ./blue/
       - aws ssm get-parameter --name "/key/github-action" --with-decryption | jq -r .Parameter.Value > ./privatekey
-      - cat ./privatekey
       - aws ssm get-parameter --name "/egihssystem/terraform/bluevars" | jq -r .Parameter.Value > ./terraform.tfvars
       - tfenv install
       - tfenv use
