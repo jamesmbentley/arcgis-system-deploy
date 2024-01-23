@@ -31,7 +31,7 @@
       client: referer
       ip:
       referer: "https://{{ portal_internal_fqdn }}:7443"
-      expiration: 30
+      expiration: 60
       f: json
     validate_certs: no
     body_format: form-urlencoded
