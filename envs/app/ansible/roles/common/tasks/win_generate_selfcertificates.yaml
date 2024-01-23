@@ -67,28 +67,28 @@
       Web_ExportFilePath: "{{ win_remote_temp_dest_dir }}\\{{ web_certificate_filename }}"
   when: existingcertfile.stat.exists == false or existingservercertfile.stat.exists == false
 
-- name: fetch the certiface
+- name: fetch the root certificate
   fetch:
     dest: "{{ controller_local_data_dir }}/"
     src: "{{ win_remote_temp_dest_dir }}\\{{ ca_certificate_filename }}"
     flat: yes
   when: existingcertfile.stat.exists == false
 
-- name: fetch the certiface
+- name: fetch the server certificate
   fetch:
     dest: "{{ controller_local_data_dir }}/"
     src: "{{ win_remote_temp_dest_dir }}\\{{ web_certificate_filename }}"
     flat: yes
   when: existingservercertfile.stat.exists == false
 
-- name: copy the certiface if exist in local
+- name: copy the root certificate if exist in local
   win_copy:
     src: "{{ controller_local_data_dir }}/{{ ca_certificate_filename }}"
     dest: "{{ win_remote_temp_dest_dir }}"
     force: no
   when: existingcertfile.stat.exists == true
 
-- name: copy the server certiface if exist in local
+- name: copy the server certificate if exist in local
   win_copy:
     src: "{{ controller_local_data_dir }}/{{ web_certificate_filename }}"
     dest: "{{ win_remote_temp_dest_dir }}"
