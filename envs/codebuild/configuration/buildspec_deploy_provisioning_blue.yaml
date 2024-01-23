@@ -10,7 +10,6 @@ phases:
       - git clone https://github.com/tfutils/tfenv.git ~/.tfenv
       - ln -s ~/.tfenv/bin/* /usr/local/bin
   build:
-    on-failure: CONTINUE
     commands:
       - echo $DEPLOY_SUBDOMAIN
       - echo $DEPLOY_PURPOSE
@@ -43,16 +42,14 @@ phases:
       - aws ec2 authorize-security-group-ingress --group-id "$(cat ./private_data_group_id)" --protocol tcp --port 5985 --cidr 0.0.0.0/0
       # # - aws ec2 authorize-security-group-ingress --group-id "$(cat ./private_web_group_id)" --protocol tcp --port 5985 --cidr `curl inet-ip.info`/32
       # # - aws ec2 authorize-security-group-ingress --group-id "$(cat ./private_data_group_id)" --protocol tcp --port 5985 --cidr `curl inet-ip.info`/32
-      - echo "Sleep 60"
-      - sleep 60
-      - ansible arcgisdatastorenode -i ./inventory -m win_ping
-      - ansible arcgisservernode -i ./inventory -m win_ping
-      - echo "Sleep 60"
-      - sleep 60
-      - ansible arcgisportalnode -i ./inventory -m win_ping
-      - echo "Sleep 60"
-      - sleep 60
-      - ansible arcgisportalnode -i ./inventory -m win_ping
+      - echo "Sleep 300"
+      - sleep 300
+      #- ansible arcgisdatastorenode -i ./inventory -m win_ping
+      #- ansible arcgisservernode -i ./inventory -m win_ping
+      #- ansible arcgisportalnode -i ./inventory -m win_ping
+      - ansible arcgisdatastorenode -i ./inventory -m wait_for_connection
+      - ansible arcgisservernode -i ./inventory -m wait_for_connection
+      - ansible arcgisportalnode -i ./inventory -m wait_for_connection
       - ansible-playbook -i ./inventory ./arcgisportal.yaml
       - ansible-playbook -i ./inventory ./arcgisserver.yaml
       - ansible-playbook -i ./inventory ./arcgisdatastore.yaml
