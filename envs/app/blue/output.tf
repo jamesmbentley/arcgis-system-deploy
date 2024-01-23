@@ -113,7 +113,7 @@ resource "local_file" "webgisdr_properties" {
       backup_bucket_region      = data.aws_region.current.name
     }
   )
-  filename = "../ansible/webgisdr.properties"
+  filename = "../ansible/data/webgisdr.properties"
 }
 
 # resource "local_file" "createportal_properties" {
