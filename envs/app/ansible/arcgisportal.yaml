@@ -10,16 +10,16 @@
     - vars_arcgisportal.yaml
     - vars_global.yaml
 
-- name: deploy arcgis portal for dev
-  hosts: devarcgisportalnode
-  become: false
-  roles:
-    - general
-    - common
-    - arcgisportal
-  vars_files:
-    - vars_dev_arcgisportal.yaml
-    - vars_global.yaml
+# - name: deploy arcgis portal for dev
+#   hosts: devarcgisportalnode
+#   become: false
+#   roles:
+#     - general
+#     - common
+#     - arcgisportal
+#   vars_files:
+#     - vars_dev_arcgisportal.yaml
+#     - vars_global.yaml
 
 # - name: deploy arcgis portal at local
 #   hosts: local_arcgisportalnode

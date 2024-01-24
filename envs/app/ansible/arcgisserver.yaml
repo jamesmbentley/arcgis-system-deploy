@@ -10,16 +10,16 @@
     - vars_arcgisserver.yaml
     - vars_global.yaml
 
-- name: deploy arcgis server for dev
-  hosts: devarcgisservernode
-  become: false
-  roles:
-    - general
-    - common
-    - arcgisserver
-  vars_files:
-    - vars_dev_arcgisserver.yaml
-    - vars_global.yaml
+# - name: deploy arcgis server for dev
+#   hosts: devarcgisservernode
+#   become: false
+#   roles:
+#     - general
+#     - common
+#     - arcgisserver
+#   vars_files:
+#     - vars_dev_arcgisserver.yaml
+#     - vars_global.yaml
 
 # - name: deploy arcgis server at local
 #   hosts: local_arcgisservernode

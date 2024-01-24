@@ -51,7 +51,9 @@ phases:
       - ansible arcgisservernode -i ./inventory -m wait_for_connection
       - ansible arcgisportalnode -i ./inventory -m wait_for_connection
       - ansible-playbook -i ./inventory ./arcgisportal.yaml
+      - ansible arcgisservernode -i ./inventory -m wait_for_connection
       - ansible-playbook -i ./inventory ./arcgisserver.yaml
+      - ansible arcgisdatastorenode -i ./inventory -m wait_for_connection
       - ansible-playbook -i ./inventory ./arcgisdatastore.yaml
       - ansible-playbook -i ./inventory ./federation.yaml
       - echo "congratulations!!"

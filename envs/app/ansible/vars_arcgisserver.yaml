@@ -25,8 +25,8 @@ win_createsite_shell: "createsite.bat -u {{ server_admin_user }} -p {{ server_ad
 win_createsite_shell_location: "{{ win_install_dir }}\\tools\\createsite"
 win_arcgistools_shell_location: "{{ win_install_dir }}\\tools"
 win_serviceaccount_shell: "configureserviceaccount.bat --username {{ arcgis_service_account }} --password {{ arcgis_service_account_pw }}"
-win_serviceaccount_shell_location: "{{ win_install_dir }}\\bin\\"
-win_serviceaccount_shell: "ServerConfigurationUtility.exe /username {{ arcgis_service_account }} /password {{ arcgis_service_account_pw }}"
+win_serverconfig_shell_location: "{{ win_install_dir }}\\bin\\"
+win_serverconfig_shell: "ServerConfigurationUtility.exe /username {{ arcgis_service_account }} /password {{ arcgis_service_account_pw }}"
 
 # for Linux in the future
 # arcgis parameters
