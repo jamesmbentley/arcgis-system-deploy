@@ -5,7 +5,7 @@ arcgisports:
   - 9876
   - 29080
   - 29081
-choices_datastore_types: "relational,tileCache"
+choices_datastore_types: "tileCache"
 
 # for Windows
 win_datastore_dir: C:\esri\data
