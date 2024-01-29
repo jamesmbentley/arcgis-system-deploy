@@ -5,7 +5,7 @@ provider "aws" {
     tags = {
       Env            = "develop"
       Project        = "arcgis-system-deploy-automatically"
-      ServiceEdition = "basic"
+      ServiceEdition = "standard"
       SystemRole     = "arcgis-system"
       CostManage     = "sample"
     }
