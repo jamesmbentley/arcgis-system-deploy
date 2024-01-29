@@ -4,3 +4,7 @@
     name: "{{ win_service_name }}"
     state: restarted
     start_mode: auto
+
+- name: pause time to let the service start.
+  pause:
+    seconds: 300
