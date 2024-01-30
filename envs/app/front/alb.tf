@@ -84,13 +84,15 @@ resource "aws_alb_listener" "arcgis" {
 # switch blue green
 resource "aws_alb_target_group_attachment" "arcgisserver" {
   target_group_arn = aws_alb_target_group.arcgisserver.arn
-  target_id        = (var.target == "blue" ? data.terraform_remote_state.app_blue.outputs.aws_instance_arcgisserver_id : data.terraform_remote_state.app_green.outputs.aws_instance_arcgisserver_id)
+  # target_id        = (var.target == "blue" ? data.terraform_remote_state.app_blue.outputs.aws_instance_arcgisserver_id : data.terraform_remote_state.app_green.outputs.aws_instance_arcgisserver_id)
+  target_id        = data.terraform_remote_state.app_blue.outputs.aws_instance_arcgisserver_id
   port             = 6443
 }
 
 resource "aws_alb_target_group_attachment" "arcgisportal" {
   target_group_arn = aws_alb_target_group.arcgisportal.arn
-  target_id        = (var.target == "blue" ? data.terraform_remote_state.app_blue.outputs.aws_instance_arcgisportal_id : data.terraform_remote_state.app_green.outputs.aws_instance_arcgisportal_id)
+  # target_id        = (var.target == "blue" ? data.terraform_remote_state.app_blue.outputs.aws_instance_arcgisportal_id : data.terraform_remote_state.app_green.outputs.aws_instance_arcgisportal_id)
+  target_id        = data.terraform_remote_state.app_blue.outputs.aws_instance_arcgisportal_id
   port             = 7443
 }
 
